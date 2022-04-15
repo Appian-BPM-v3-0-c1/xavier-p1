@@ -141,4 +141,33 @@ public class CustomerDAO implements CrudDAO<Customer> {
         }
         return customer;
     }
+
+    public Customer findByUsertype(String usertype) {
+
+        Customer customer = new Customer();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM customers WHERE username = ?");
+            ps.setString(1, usertype);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                customer.setId(rs.getInt("id"));
+                customer.setFirstName(rs.getString("firstname"));
+                customer.setLastName(rs.getString("lastname"));
+                customer.setUsername(rs.getString("username"));
+                customer.setEmail(rs.getString("email"));
+                customer.setPassword(rs.getString("password"));
+                customer.setAddress(rs.getString("address"));
+                customer.setCity(rs.getString("city"));
+                customer.setState(rs.getString("state"));
+                customer.setZip(rs.getString("zip"));
+                customer.setUsertype(rs.getString("usertype"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+
 }

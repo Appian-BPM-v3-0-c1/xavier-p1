@@ -30,9 +30,7 @@ public class Department {
         this.name = name;
     }
 
-    public int getLocationId() {
-        return locationId;
-    }
+    public int getLocationId() { return locationId; }
 
     public void setLocationId(int locationId) {
         this.locationId = locationId;
@@ -40,10 +38,9 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", locationId=" + locationId +
-                '}';
+        return "\nid: " + id +
+                "\nname :" + name +
+                "\nlocationId :" + locationId;
     }
+
 }

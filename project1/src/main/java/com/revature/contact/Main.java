@@ -1,6 +1,7 @@
 package com.revature.contact;
 
 import com.revature.contact.daos.CustomerDAO;
+import com.revature.contact.daos.LocationDAO;
 import com.revature.contact.services.CustomerService;
 import com.revature.contact.ui.LoginMenu;
 

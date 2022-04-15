@@ -1,15 +1,21 @@
 package com.revature.contact.ui;
 
+import com.revature.contact.daos.DepartmentDAO;
+import com.revature.contact.models.Customer;
 import com.revature.contact.models.Location;
+import com.revature.contact.services.DepartmentService;
 import com.revature.contact.services.LocationService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LocationMenu implements IMenu{
-    private final LocationService locationservice;
+    private final LocationService locationService;
+    private final Customer customer;
 
-    public LocationMenu(LocationService locationservice) {
-        this.locationservice = locationservice;
+    public LocationMenu(LocationService locationService, Customer customer) {
+        this.locationService = locationService;
+        this.customer = customer;
     }
 
     @Override
@@ -20,8 +26,8 @@ public class LocationMenu implements IMenu{
 
         while (!exit) {
             System.out.println("\nWelcome to Store Locations menu!");
-            System.out.println("[1] Search locations");
-            System.out.println("[2] Create locations");
+            System.out.println("[1] View all locations");
+            System.out.println("[2] Search locations");
             System.out.println("[X] Exit");
 
             System.out.print("\nEnter: ");
@@ -29,13 +35,10 @@ public class LocationMenu implements IMenu{
 
             switch (input) {
                 case '1':
-                    //viewAllLocation();
+                    viewAllLocations();
                     break;
                 case '2':
                     searchLocation();
-                    break;
-                case '3':
-                    createLocation();
                     break;
                 case 'x':
                     exit = true;
@@ -47,60 +50,51 @@ public class LocationMenu implements IMenu{
         }
     }
 
-    private void searchLocation() {
-        String name = "";
+    private void viewAllLocations() {
+        int input = 0;
+        Scanner scan = new Scanner(System.in);
+        List<Location> locationList = locationService.getLocationDAO().findAllLocations();
+
+        for(int i = 0;i<locationList.size();i++) {
+            System.out.println("["+(i+1)+"]"+locationList.get(i).getName());
+        }
+
+        while (true) {
+            System.out.print("\nSelect a location to view: ");
+
+            input = scan.nextInt() - 1;
+
+            if (input > locationList.size()) {
+                System.out.println("\nInvalid input");
+            } else {
 
 
+                for (Location l: locationList) {
+                    System.out.println(l);
+                    new DepartmentMenu(new DepartmentService(new DepartmentDAO()), locationService, customer).start();
+                }
+                break;
+            }
+        }
     }
 
-    private void createLocation() {
-        char input = ' ';
-        boolean exit = false;
-        boolean confirm = false;
+    private void searchLocation() {
+        String name = "";
         Scanner scan = new Scanner(System.in);
-        Location location = new Location();
 
-        while (!exit) {
-            System.out.print("\nEnter in location name: ");
-            location.setName(scan.nextLine().toLowerCase());
+        while (true) {
+            System.out.println("\nSearch location: ");
+            name = scan.nextLine();
 
-            System.out.print("\nEnter in location street: ");
-            location.setStreet(scan.nextLine().toLowerCase());
-            scan.nextLine();
+            List<Location> locations = locationService.getLocationDAO().findAllByName(name);
 
-            System.out.print("\nEnter in location city: ");
-            location.setCity(scan.next().toLowerCase());
-
-            System.out.print("\nEnter in location state: ");
-            location.setState(scan.next().toLowerCase());
-
-            System.out.print("\nEnter in location zip: ");
-            location.setZip(scan.next());
-
-            System.out.print("\nEnter in location phone number: ");
-            location.setPhone(scan.next());
-
-            while (!confirm) {
-                System.out.println("\nIs this correct? (y/n)\n");
-                System.out.println(location);
-
-                input = scan.next().charAt(0);
-                switch (input) {
-                    case 'y':
-                        locationservice.getLocationDAO().save(location);
-                        System.out.println("\nStore location created successfully!");
-                        exit = true;
-                        confirm = true;
-                        break;
-                    case 'n':
-                        confirm = true;
-                        break;
-                    default:
-                        System.out.println("Invalid input!");
-                        break;
+            if (locations.isEmpty()) {
+                System.out.println("\nInvalid search!");
+            } else {
+                for (Location loc : locations) {
+                    System.out.println(loc);
                 }
             }
         }
     }
-    
 }

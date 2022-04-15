@@ -1,6 +1,7 @@
 package com.revature.contact.services;
 
 import com.revature.contact.daos.CustomerDAO;
+
 import com.revature.contact.models.Customer;
 
 import java.util.List;
@@ -41,6 +42,18 @@ public class CustomerService {
 
         for (Customer i : userList) {
             if (i.getUsername().equals(customer.getUsername()) && i.getPassword().equals(customer.getPassword())) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public boolean isValidUsertype(Customer customer) {
+        List<Customer> userList = customerDAO.findAll();
+
+        for (Customer i : userList) {
+            if (i.getUsername().equals(customer.getUsername()) && i.getUsertype().equals(customer.getUsertype()) ) {
                 return true;
             }
 

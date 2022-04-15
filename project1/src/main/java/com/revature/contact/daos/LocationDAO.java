@@ -6,7 +6,9 @@ import com.revature.contact.models.Location;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LocationDAO implements CrudDAO<Location> {
@@ -57,4 +59,87 @@ public class LocationDAO implements CrudDAO<Location> {
     public boolean removeById(String id) {
         return false;
     }
+
+    public String findByName(String name) {
+        Location location = new Location();
+
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM locations WHERE name = ?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                location.setId(rs.getInt("id"));
+                location.setName(rs.getString("name"));
+                location.setStreet(rs.getString("street"));
+                location.setCity(rs.getString("city"));
+                location.setState(rs.getString("state"));
+                location.setZip(rs.getString("zip"));
+                location.setPhone(rs.getString("phone"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    public List<Location> findAllByName(String name) {
+        List<Location> locations = new ArrayList<>();
+
+        try{
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM locations WHERE name LIKE ?");
+            ps.setString(1, "%" + name + "%");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Location location = new Location();
+
+                location.setId(rs.getInt("id"));
+                location.setName(rs.getString("name"));
+                location.setStreet(rs.getString("street"));
+                location.setCity(rs.getString("city"));
+                location.setState(rs.getString("state"));
+                location.setZip(rs.getString("zip"));
+                location.setPhone(rs.getString("phone"));
+
+                locations.add(location);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return locations;
+    }
+
+    public List<Location> findAllLocations() {
+        List<Location> locations = new ArrayList<>();
+
+        try{
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM locations");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Location location = new Location();
+
+                location.setId(rs.getInt("id"));
+                location.setName(rs.getString("name"));
+                location.setStreet(rs.getString("street"));
+                location.setCity(rs.getString("city"));
+                location.setState(rs.getString("state"));
+                location.setZip(rs.getString("zip"));
+                location.setPhone(rs.getString("phone"));
+
+                locations.add(location);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return locations;
+    }
 }
+
+

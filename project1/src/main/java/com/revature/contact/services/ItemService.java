@@ -9,7 +9,12 @@ public class ItemService {
         this.itemDAO = itemDAO;
     }
 
+
     public ItemDAO getItemDAO() {
+        return itemDAO();
+    }
+
+    private ItemDAO itemDAO() {
         return itemDAO;
     }
 }

@@ -1,7 +1,14 @@
 package com.revature.contact.ui;
 
+import com.revature.contact.daos.DepartmentDAO;
+import com.revature.contact.daos.ItemDAO;
+import com.revature.contact.daos.LocationDAO;
 import com.revature.contact.models.Customer;
 import com.revature.contact.services.CustomerService;
+import com.revature.contact.services.DepartmentService;
+import com.revature.contact.services.ItemService;
+import com.revature.contact.services.LocationService;
+
 
 import java.util.Scanner;
 
@@ -17,9 +24,9 @@ public class LoginMenu implements IMenu {
 
     @Override
     public void start() {
-        char input = ' ';
-
-        exit: {
+        char input;
+        exit:
+        {
             while (true) {
                 System.out.println("\nWelcome to CONTACT Sporting Goods!");
                 System.out.println("[1] Log in");
@@ -46,16 +53,16 @@ public class LoginMenu implements IMenu {
     }
 
     public void createAccount() {
-        String username = "";
-        String password1 = "";
-        String password2 = "";
-        String firstname = "";
-        String lastname = "";
-        String email = "";
-        String address = "";
-        String city = "";
-        String state = "";
-        String zip = "";
+        String username;
+        String password1;
+        String password2;
+        String firstname;
+        String lastname;
+        String email;
+        String address;
+        String city;
+        String state;
+        String zip;
 
         Scanner scan = new Scanner(System.in);
 
@@ -107,10 +114,12 @@ public class LoginMenu implements IMenu {
 
                 System.out.print("\nEnter in city: ");
                 city = scan.next();
+                scan.nextLine();
                 customer.setCity(city);
 
                 System.out.print("\nEnter in state: ");
                 state = scan.next();
+                scan.nextLine();
                 customer.setState(state);
 
                 System.out.print("\nEnter in zip: ");
@@ -161,10 +170,15 @@ public class LoginMenu implements IMenu {
 
             if (customerService.isValidLogin(customer)) {
                 customer = customerService.getCustomerDAO().findByUsername(customer.getUsername());
-                new MainMenu(customer).start();
-                break;
-            } else {
-                System.out.println("\nInvalid login");
+
+                if (customer.getUsertype().equals("default")) {
+                    System.out.println("\nLogin accepted...");
+                    new MainMenu(customer).start();
+                    break;
+                } else if (customer.getUsertype().equals("admin")) {
+                    System.out.println("\nWelcome valued Employee");
+                   new AdminMenu(new LocationService(new LocationDAO()),new DepartmentService(new DepartmentDAO()),new ItemService(new ItemDAO()),customer).start();
+                }
             }
         }
     }
