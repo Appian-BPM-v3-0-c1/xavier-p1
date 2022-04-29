@@ -114,4 +114,31 @@ public class ItemDAO implements CrudDAO<Items> {
 
         return items;
     }
+    public List<Items> findAllByBrand(String brand) {
+        List<Items> items = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM items WHERE brand LIKE ?");
+            ps.setString(1, "%" + brand + "%");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Items item = new Items();
+
+                item.setId(rs.getInt("id"));
+                item.setName(rs.getString("name"));
+                item.setPrice(rs.getFloat("price"));
+                item.setStock(rs.getInt("stock"));
+                item.setBrand(rs.getString("brand"));
+                item.setDepartmentsId(rs.getInt("departments_id"));
+
+                items.add(item);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return items;
+    }
 }

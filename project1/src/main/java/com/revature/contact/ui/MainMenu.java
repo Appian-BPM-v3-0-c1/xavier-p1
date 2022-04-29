@@ -19,15 +19,15 @@ public class MainMenu implements IMenu {
 
     @Override
     public void start() {
-        System.out.println("\nHello " + customer.getFirstName() +"!");
         char input = ' ';
         boolean exit = false;
         Scanner scan = new Scanner(System.in);
 
         while (!exit) {
-            System.out.println("\nWelcome to CONTACT SPORTING GOODS!");
+            System.out.println("WELCOME BACK TO THE MAIN MENU!");
+            System.out.println("\nSelect one of the following:");
             System.out.println("[1] Go to locations menu");
-            System.out.println("[X] Exit");
+            System.out.println("[x] Log Out");
 
             System.out.print("\nEnter: ");
             input = scan.next().charAt(0);

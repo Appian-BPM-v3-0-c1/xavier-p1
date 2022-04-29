@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class DepartmentMenu implements IMenu{
     private final DepartmentService departmentService;
-private final LocationService locationService;
+    private final LocationService locationService;
     private final Customer customer;
 
     public DepartmentMenu(DepartmentService departmentService, LocationService locationService, Customer customer) {
@@ -37,10 +37,13 @@ private final LocationService locationService;
         Items items = new Items();
 
         while (!exit) {
-            System.out.println("\nWelcome to Store Departments menu!");
+            System.out.println("\n\033[4;2m" + "STORE DEPARTMENTS" + "\033[0m");
+            System.out.println("\nSelect one of the following:");
             System.out.println("[1] View all departments");
             System.out.println("[2] Search departments");
-            System.out.println("[X] Exit");
+            System.out.println("[3] Change store location");
+            System.out.println("[4] Go back to MAIN");
+            System.out.println("[x] Exit");
 
             System.out.print("\nEnter: ");
             input = scan.next().charAt(0);
@@ -51,6 +54,12 @@ private final LocationService locationService;
                     break;
                 case '2':
                     searchDepartments();
+                    break;
+                case '3':
+                    new LocationMenu(new LocationService(new LocationDAO()), new Customer()).start();
+                    break;
+                case '4':
+                    new MainMenu(new Customer()).start();
                     break;
                 case 'x':
                     exit = true;
@@ -78,7 +87,7 @@ private final LocationService locationService;
 
             if (input > departmentList.size()) {
                 System.out.println("\nInvalid input");
-            } else if(input == 2){
+            } else if(input == departmentList.size()){
                 System.out.println("\nThis department is down due to maintenance(04/15/2022 8:00AM to 8:00PM). Please try another department.");
             } else {
                 for (Department l: departmentList) {
@@ -106,7 +115,9 @@ private final LocationService locationService;
                 for (Department loc : departments) {
                     System.out.println(loc);
                 }
+
             }
+            break;
         }
     }
 }

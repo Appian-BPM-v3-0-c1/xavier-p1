@@ -25,10 +25,12 @@ public class LocationMenu implements IMenu{
         Scanner scan = new Scanner(System.in);
 
         while (!exit) {
-            System.out.println("\nWelcome to Store Locations menu!");
+            System.out.println("\n\033[4;2m" + "STORE LOCATIONS" + "\033[0m");
+            System.out.println("\nSelect one of the following:");
             System.out.println("[1] View all locations");
             System.out.println("[2] Search locations");
-            System.out.println("[X] Exit");
+            System.out.println("[3] Go back to MAIN");
+            System.out.println("[x] Exit");
 
             System.out.print("\nEnter: ");
             input = scan.next().charAt(0);
@@ -39,6 +41,9 @@ public class LocationMenu implements IMenu{
                     break;
                 case '2':
                     searchLocation();
+                    break;
+                case '3':
+                    new MainMenu(new Customer()).start();
                     break;
                 case 'x':
                     exit = true;
@@ -54,9 +59,10 @@ public class LocationMenu implements IMenu{
         int input = 0;
         Scanner scan = new Scanner(System.in);
         List<Location> locationList = locationService.getLocationDAO().findAllLocations();
+        System.out.println("\n\033[4;2m" + "LOCATIONS:" + "\033[0m");
 
         for(int i = 0;i<locationList.size();i++) {
-            System.out.println("["+(i+1)+"]"+locationList.get(i).getName());
+            System.out.println("\n["+(i+1)+"]"+locationList.get(i).getName());
         }
 
         while (true) {
@@ -94,7 +100,9 @@ public class LocationMenu implements IMenu{
                 for (Location loc : locations) {
                     System.out.println(loc);
                 }
+                break;
             }
+
         }
     }
 }

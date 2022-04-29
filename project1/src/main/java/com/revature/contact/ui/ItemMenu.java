@@ -1,5 +1,7 @@
 package com.revature.contact.ui;
 
+import com.revature.contact.daos.DepartmentDAO;
+import com.revature.contact.daos.LocationDAO;
 import com.revature.contact.models.Cart;
 import com.revature.contact.models.Customer;
 import com.revature.contact.models.Items;
@@ -32,12 +34,17 @@ public class ItemMenu implements IMenu{
         Scanner scan = new Scanner(System.in);
 
         while (!exit) {
-            System.out.println("\nWelcome to Store items menu!");
+            System.out.println("\n\033[4;2m" + "STORE ITEMS" + "\033[0m");
+            System.out.println("\nSelect one of the following:");
             System.out.println("[1] View all items");
-            System.out.println("[2] Search items");
-            System.out.println("[3] Go to cart");
-            System.out.println("[4] Go to order history");
-            System.out.println("[X] Exit");
+            System.out.println("[2] Search items by name");
+            System.out.println("[3] Search items by brand");
+            System.out.println("[4] Go to cart");
+            System.out.println("[5] Go to order history");
+            System.out.println("[6] Change store department in the current store location");
+            System.out.println("[7] Change store location");
+            System.out.println("[8] Go back to MAIN");
+            System.out.println("[x] Exit");
 
             System.out.print("\nEnter: ");
             input = scan.next().charAt(0);
@@ -47,12 +54,24 @@ public class ItemMenu implements IMenu{
                     viewAllItems();
                     break;
                 case '2':
-                    searchItems();
+                    searchItemsByName();
                     break;
                 case '3':
-                    //viewCart();
+                    searchItemsByBrand();
+                    break;
                 case '4':
-                    viewOrderHistory();
+                    //viewCart();
+                case '5':
+                    //viewOrderHistory();
+                case '6':
+                    new DepartmentMenu(new DepartmentService(new DepartmentDAO()), new LocationService(new LocationDAO()), new Customer()).start();
+                    break;
+                case '7':
+                    new LocationMenu(new LocationService(new LocationDAO()), new Customer()).start();
+                    break;
+                case '8':
+                    new MainMenu(new Customer()).start();
+                    break;
                 case 'x':
                     exit = true;
                     break;
@@ -79,7 +98,7 @@ public class ItemMenu implements IMenu{
 
             if (input < itemList.size()) {
                 Items interested = itemList.get(input);
-                System.out.println("\nYou are interested in " + interested.getBrand() + " " + interested.getName() + ".");
+                System.out.println("\nYou are interested in item: \n"  + interested.getBrand() +  "(" + interested.getName()+ ")" + " for $" + "\033[4;2m" + interested.getPrice() + "\033[0m" +".");
                 System.out.println("\nShould this item be added to your cart?");
                 System.out.println("\n(y/n)");
 
@@ -91,7 +110,7 @@ public class ItemMenu implements IMenu{
                         cart.setCustomerId(interested.getId());
 
 
-                        System.out.println("\n" + interested.getBrand() + " " + interested.getName() + "is being added to your cart.");
+                        System.out.println("\n" + interested.getBrand() + " " + interested.getName() + " is being added to your cart.");
                         break;
                     } else if (interested.getStock() == 0) {
                         System.out.println("SOLD OUT! We restock daily, so please check back in later. Feel free to shop through our other items.");
@@ -107,7 +126,7 @@ public class ItemMenu implements IMenu{
         }
     }
 
-    private void searchItems() {
+    private void searchItemsByName() {
         String name = "";
         Scanner scan = new Scanner(System.in);
 
@@ -126,6 +145,26 @@ public class ItemMenu implements IMenu{
             }
         }
     }
+
+    private void searchItemsByBrand() {
+        String brand = "";
+        Scanner scan = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nSearch Brand Name: ");
+            brand = scan.nextLine();
+
+            List<Items> items = itemService.getItemDAO().findAllByBrand(brand);
+
+            if (items.isEmpty()) {
+                System.out.println("\nInvalid search!");
+            } else {
+                for (Items loc : items) {
+                    System.out.println(loc);
+                }
+            }
+        }
+    }
     /*private void viewCart() {
 
         List<Cart> carts = cartService.getCartDAO().findAllById(customer.getId());
@@ -134,9 +173,7 @@ public class ItemMenu implements IMenu{
         }
         System.out.println("\nWill that complete your purchase today?");
 
-    }*/
-    private void viewOrderHistory() {
-
-
     }
+    private void viewOrderHistory() {
+    }*/
 }

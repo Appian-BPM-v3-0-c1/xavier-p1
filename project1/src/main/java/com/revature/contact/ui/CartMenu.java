@@ -25,9 +25,9 @@ public class CartMenu implements IMenu{
 
         while (!exit) {
             System.out.println("\nCart Menu");
-            System.out.println("[1] Go to ");
-            System.out.println("[2] Go to ");
-            System.out.println("[X] Exit");
+            System.out.println("[1] Show items");
+            System.out.println("[2] Go to Order History");
+            System.out.println("[x] Exit");
 
             System.out.print("\nEnter: ");
             input = scan.next().charAt(0);

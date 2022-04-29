@@ -1,9 +1,11 @@
 package com.revature.contact.ui;
 
+import com.revature.contact.daos.CustomerDAO;
 import com.revature.contact.models.Customer;
 import com.revature.contact.models.Department;
 import com.revature.contact.models.Items;
 import com.revature.contact.models.Location;
+import com.revature.contact.services.CustomerService;
 import com.revature.contact.services.DepartmentService;
 import com.revature.contact.services.ItemService;
 import com.revature.contact.services.LocationService;
@@ -35,7 +37,7 @@ public class AdminMenu implements IMenu {
                 System.out.println("[1] Create a new location.");
                 System.out.println("[2] Create a new department.");
                 System.out.println("[3] Create a new item.");
-                System.out.println("[x] Exit\n");
+                System.out.println("[x] Log Out\n");
 
                 input = scan.next().charAt(0);
 
@@ -49,7 +51,8 @@ public class AdminMenu implements IMenu {
                     case '3':
                         createItem();
                     case 'x':
-                        break exit;
+                        new LoginMenu(new CustomerService(new CustomerDAO())).start();
+                        break;
                     default:
                         System.out.println("\nInvalid input!");
                         break;

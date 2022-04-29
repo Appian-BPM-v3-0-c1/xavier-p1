@@ -28,7 +28,8 @@ public class LoginMenu implements IMenu {
         exit:
         {
             while (true) {
-                System.out.println("\nWelcome to CONTACT Sporting Goods!");
+                System.out.println("\nWelcome to " + "\033[4;2m" + "CONTACT SPORTING GOODS!" + "\033[0m");
+                System.out.println("\nSelect one of the following:");
                 System.out.println("[1] Log in");
                 System.out.println("[2] Create new account");
                 System.out.println("[x] Exit\n");
@@ -95,37 +96,6 @@ public class LoginMenu implements IMenu {
                 password2 = scan.next();
 
 
-                System.out.print("\nEnter in first name: ");
-                firstname = scan.next();
-                customer.setFirstName(firstname);
-
-                System.out.print("\nEnter in last name: ");
-                lastname = scan.next();
-                customer.setLastName(lastname);
-
-                System.out.print("\nEnter in email: ");
-                email = scan.next();
-                customer.setEmail(email);
-
-                System.out.print("\nEnter in address: ");
-                address = scan.next();
-                scan.nextLine();
-                customer.setAddress(address);
-
-                System.out.print("\nEnter in city: ");
-                city = scan.next();
-                scan.nextLine();
-                customer.setCity(city);
-
-                System.out.print("\nEnter in state: ");
-                state = scan.next();
-                scan.nextLine();
-                customer.setState(state);
-
-                System.out.print("\nEnter in zip: ");
-                zip = scan.next();
-                customer.setZip(zip);
-
                 if (password1.equals(password2)) {
                     if (customerService.isValidPassword(password1)) {
                         customer.setPassword(password1);
@@ -134,9 +104,41 @@ public class LoginMenu implements IMenu {
                         System.out.println("\nInvalid password!");
                     }
                 } else {
-                    System.out.println("Password does not match!");
+                    System.out.println("Password does not match! Try again");
                 }
             }
+
+            System.out.print("\nEnter in first name: ");
+            firstname = scan.next();
+            customer.setFirstName(firstname);
+
+            System.out.print("\nEnter in last name: ");
+            lastname = scan.next();
+            customer.setLastName(lastname);
+
+            System.out.print("\nEnter in email: ");
+            email = scan.next();
+            customer.setEmail(email);
+
+            System.out.print("\nEnter in address: ");
+            address = scan.next();
+            scan.nextLine();
+            customer.setAddress(address);
+
+            System.out.print("\nEnter in city: ");
+            city = scan.next();
+            scan.nextLine();
+            customer.setCity(city);
+
+            System.out.print("\nEnter in state: ");
+            state = scan.next();
+            scan.nextLine();
+            customer.setState(state);
+
+            System.out.print("\nEnter in zip: ");
+            zip = scan.next();
+            customer.setZip(zip);
+
 
             System.out.println("\nPlease confirm credentials (y/n)");
             System.out.print("Username: " + username);
@@ -165,14 +167,16 @@ public class LoginMenu implements IMenu {
             System.out.print("\nUsername: ");
             customer.setUsername(scan.next());
 
-            System.out.print("\nPassword: ");
+            System.out.print("Password: ");
             customer.setPassword((scan.next()));
 
             if (customerService.isValidLogin(customer)) {
                 customer = customerService.getCustomerDAO().findByUsername(customer.getUsername());
 
                 if (customer.getUsertype().equals("default")) {
-                    System.out.println("\nLogin accepted...");
+                    System.out.println("Login accepted!");
+                    System.out.println("\n\033[4;2m" + "MAIN PAGE" + "\033[0m");
+                    System.out.println("\nHello " + customer.getFirstName() +"!");
                     new MainMenu(customer).start();
                     break;
                 } else if (customer.getUsertype().equals("admin")) {
