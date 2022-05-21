@@ -10,7 +10,7 @@
 
       This project is the backend portion of a sporting goods store website. The store has multiple store locations, departments, and items to choose from for a user. All users can access this online store; however, the user type determines a user's level of accessibility of the website.
 
-[User Types](User Types)
+[User Types](User-Types)
 
       Default (store customer):
       • Create an account
