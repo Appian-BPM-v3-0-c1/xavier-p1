@@ -1,5 +1,10 @@
 # xavier-p1
 
+## Table of contents
+* [Project Name](#project-name)
+* [Description](#description)
+* [Technologies Used](#technologies-used)
+
 ### Project Name
 
       CONTACT Sporting Goods
