@@ -1,9 +1,11 @@
 # xavier-p1
 
-Project Name: 
+Project Name:
+
   CONTACT Sporting Goods
 
-Description: 
+Description:
+
   This project is the backend portion of a sporting goods store website. The store has multiple store locations, departments, and items to choose from for a user. All users can access this online store; however, the user type determines a user's level of accessibility of the website.
 
 User types:
@@ -25,6 +27,7 @@ User types:
     •	Restock inventory
     
 Technologies Used:
+
   Java 17
   IntelliJ IDEA Community Edition (version 2022.1)
   PostgreSQL 14
