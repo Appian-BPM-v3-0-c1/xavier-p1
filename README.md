@@ -14,8 +14,7 @@ User types:
     •	Browse through, search, and select different departments
     •	Browse through, search, and select different store items inventory
     •	Add items to cart
-    •	View cart and order history
-    
+    •	View cart and order history    
   Admin (store administrator/ manager)
     •	Create an account
     •	Log in and out of their accounts
