@@ -2,7 +2,7 @@
 
 Project Name
 
-  CONTACT Sporting Goods
+      CONTACT Sporting Goods
 
 Description
 
