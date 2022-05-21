@@ -4,11 +4,11 @@
 
       CONTACT Sporting Goods
 
-#### Description
+### Description
 
       This project is the backend portion of a sporting goods store website. The store has multiple store locations, departments, and items to choose from for a user. All users can access this online store; however, the user type determines a user's level of accessibility of the website.
 
-User types
+      User types
 
   Default (store customer):
     •	Create an account
@@ -26,7 +26,7 @@ User types
     •	Create a new item in the inventory
     •	Restock inventory
     
-Technologies Used
+### Technologies Used
 
   • Java 17
   • IntelliJ IDEA Community Edition (version 2022.1)
