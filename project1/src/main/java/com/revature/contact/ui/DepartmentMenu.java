@@ -43,7 +43,7 @@ public class DepartmentMenu implements IMenu{
             System.out.println("[2] Search departments");
             System.out.println("[3] Change store location");
             System.out.println("[4] Go back to MAIN");
-            System.out.println("[x] Exit");
+            System.out.println("[x] Log Out");
 
             System.out.print("\nEnter: ");
             input = scan.next().charAt(0);
@@ -62,7 +62,7 @@ public class DepartmentMenu implements IMenu{
                     new MainMenu(new Customer()).start();
                     break;
                 case 'x':
-                    exit = true;
+                    new LoginMenu(new CustomerService(new CustomerDAO())).start();
                     break;
                 default:
                     System.out.println("\nInvalid Input!");

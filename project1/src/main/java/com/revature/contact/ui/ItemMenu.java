@@ -1,5 +1,6 @@
 package com.revature.contact.ui;
 
+import com.revature.contact.daos.CustomerDAO;
 import com.revature.contact.daos.DepartmentDAO;
 import com.revature.contact.daos.LocationDAO;
 import com.revature.contact.models.Cart;
@@ -44,7 +45,7 @@ public class ItemMenu implements IMenu{
             System.out.println("[6] Change store department in the current store location");
             System.out.println("[7] Change store location");
             System.out.println("[8] Go back to MAIN");
-            System.out.println("[x] Exit");
+            System.out.println("[x] Log Out");
 
             System.out.print("\nEnter: ");
             input = scan.next().charAt(0);
@@ -73,7 +74,7 @@ public class ItemMenu implements IMenu{
                     new MainMenu(new Customer()).start();
                     break;
                 case 'x':
-                    exit = true;
+                    new LoginMenu(new CustomerService(new CustomerDAO())).start();
                     break;
                 default:
                     System.out.println("\nInvalid Input!");

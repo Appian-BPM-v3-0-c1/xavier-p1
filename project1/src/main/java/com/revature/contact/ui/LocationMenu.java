@@ -1,8 +1,10 @@
 package com.revature.contact.ui;
 
+import com.revature.contact.daos.CustomerDAO;
 import com.revature.contact.daos.DepartmentDAO;
 import com.revature.contact.models.Customer;
 import com.revature.contact.models.Location;
+import com.revature.contact.services.CustomerService;
 import com.revature.contact.services.DepartmentService;
 import com.revature.contact.services.LocationService;
 
@@ -30,7 +32,7 @@ public class LocationMenu implements IMenu{
             System.out.println("[1] View all locations");
             System.out.println("[2] Search locations");
             System.out.println("[3] Go back to MAIN");
-            System.out.println("[x] Exit");
+            System.out.println("[x] Log Out");
 
             System.out.print("\nEnter: ");
             input = scan.next().charAt(0);
@@ -46,7 +48,7 @@ public class LocationMenu implements IMenu{
                     new MainMenu(new Customer()).start();
                     break;
                 case 'x':
-                    exit = true;
+                    new LoginMenu(new CustomerService(new CustomerDAO())).start();
                     break;
                 default:
                     System.out.println("\nInvalid Input!");
