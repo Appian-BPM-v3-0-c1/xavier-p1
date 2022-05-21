@@ -6,19 +6,22 @@
 
 ### Description
 
+      Summary
+
       This project is the backend portion of a sporting goods store website. The store has multiple store locations, departments, and items to choose from for a user. All users can access this online store; however, the user type determines a user's level of accessibility of the website.
 
 User types
 
       Default (store customer):
   
-    •	Create an account    
-    •	Log in and out of their accounts    
-    • Browse through, search, and select different store locations    
-    •	Browse through, search, and select different departments
-    •	Browse through, search, and select different store items inventory
-    •	Add items to cart
-    •	View cart and order history 
+•	Create an account
+•	Log in and out of their accounts
+•	Browse through, search, and select different store locations
+•	Browse through, search, and select different departments
+•	Browse through, search, and select different store items inventory
+•	Add items to cart
+•	View cart and order history
+
     
   Admin (store administrator/ manager):
   
