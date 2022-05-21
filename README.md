@@ -1,16 +1,16 @@
 # xavier-p1
 
-Project Name:
+Project Name
 
   CONTACT Sporting Goods
 
-Description:
+Description
 
   This project is the backend portion of a sporting goods store website. The store has multiple store locations, departments, and items to choose from for a user. All users can access this online store; however, the user type determines a user's level of accessibility of the website.
 
-User types:
+User types
 
-  Default (store customer)
+  Default (store customer):
     •	Create an account
     •	Log in and out of their accounts
     •	Browse through, search, and select different store locations
@@ -18,7 +18,7 @@ User types:
     •	Browse through, search, and select different store items inventory
     •	Add items to cart
     •	View cart and order history    
-  Admin (store administrator/ manager)
+  Admin (store administrator/ manager):
     •	Create an account
     •	Log in and out of their accounts
     •	Create a new store location
@@ -26,12 +26,12 @@ User types:
     •	Create a new item in the inventory
     •	Restock inventory
     
-Technologies Used:
+Technologies Used
 
-  Java 17
-  IntelliJ IDEA Community Edition (version 2022.1)
-  PostgreSQL 14
-  GitHub
-  Git Bash (version 2.35)
-  DBeaver Community Edition (version 22.0.1)
-  LucidChart
+  • Java 17
+  • IntelliJ IDEA Community Edition (version 2022.1)
+  • PostgreSQL 14
+  • GitHub
+  • Git Bash (version 2.35)
+  • DBeaver Community Edition (version 22.0.1)
+  • LucidChart
