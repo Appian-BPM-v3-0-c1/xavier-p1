@@ -22,7 +22,6 @@ User types
       • View cart and order history
     
   Admin (store administrator/ manager):
-  
     •	Create an account
     •	Log in and out of their accounts
     •	Create a new store location
@@ -32,10 +31,10 @@ User types
     
 ### Technologies Used
 
-  • Java 17
-  • IntelliJ IDEA Community Edition (version 2022.1)
-  • PostgreSQL 14
-  • GitHub
-  • Git Bash (version 2.35)
-  • DBeaver Community Edition (version 22.0.1)
-  • LucidChart
+        • Java 17
+        • IntelliJ IDEA Community Edition (version 2022.1)
+        • PostgreSQL 14
+        • GitHub
+        • Git Bash (version 2.35)
+        • DBeaver Community Edition (version 22.0.1)
+        • LucidChart
