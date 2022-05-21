@@ -10,7 +10,7 @@
 
       User types
 
-  Default (store customer):
+      Default (store customer):
   
     •	Create an account    
     •	Log in and out of their accounts    
